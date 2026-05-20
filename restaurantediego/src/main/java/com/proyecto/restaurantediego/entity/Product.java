@@ -3,6 +3,8 @@ package com.proyecto.restaurantediego.entity;
 import java.math.BigDecimal;
 import java.util.Locale.Category;
 
+import org.hibernate.annotations.SQLRestriction;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,6 +22,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "products")
+@SQLRestriction("is_active = true")
 @Getter
 @Setter
 @NoArgsConstructor
