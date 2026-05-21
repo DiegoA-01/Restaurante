@@ -12,18 +12,43 @@ import com.proyecto.restaurantediego.enums.TableStatus;
 @Repository
 public interface RestaurantTableRepository extends JpaRepository<RestaurantTable, Long> {
     
-    // Buscar por número de mesa
+    /**
+     * Buscar por número de mesa
+     * 
+     * @param tableNumber
+     * @return
+     */
     Optional<RestaurantTable> findByTableNumber(Integer tableNumber);
 
-    // Verificar si existe el número de mesa
+    /**
+     * Verificar si existe el número de mesa
+     * 
+     * @param tableNumber
+     * @return
+     */
     boolean existsByTableNumber(Integer tableNumber);
 
-    // Buscar mesas por estado
+    /**
+     * Buscar mesas por estado
+     * 
+     * @param status
+     * @return
+     */
     List<RestaurantTable> findByStatus(TableStatus status);
 
-    // Buscar mesas con capacidad mayor o igual
+    /**
+     * Buscar mesas con capacidad mayor o igual
+     * 
+     * @param capacity
+     * @return
+     */
     List<RestaurantTable> findByCapacityGreaterThanEqual(Integer capacity);
 
-    // Buscar mesas disponibles
+    /**
+     * Buscar mesas disponibles
+     * 
+     * @param status
+     * @return
+     */
     List<RestaurantTable> findByStatusOrderByTableNumberAsc(TableStatus status);
 }

@@ -9,9 +9,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     
-    //  Buscar por nombre
+    /**
+     *  Buscar por nombre
+     * 
+     * @param name
+     * @return
+     */
     Optional<Category> findByName(String name);
 
-    // Verificar si existe el nombre
+    /**
+     * Verificar si existe el nombre
+     * 
+     * @param name
+     * @return
+     */
     boolean existsByName(String name);
 }

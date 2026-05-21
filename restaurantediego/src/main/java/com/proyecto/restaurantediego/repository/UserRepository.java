@@ -9,10 +9,22 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     
-    // "Query Method": Spring Data JPA parsea este nombre y genera el SQL automáticamente:
-    // SELECT * FROM users WHERE email = ? AND is_active = true;
+    /**
+     * Busca un usuario activo por su correo electrónico.
+     * Spring Data JPA genera automáticamente la consulta:
+     * 
+     * SELECT * FROM users  WHERE email = ? AND is_active = true
+     * 
+     * @param email
+     * @return
+     */
     Optional<User> findByEmailAndIsActiveTrue(String email);
 
-    // Verifica si un email ya existe (Útil para el registro)
+    /**
+     * Verifica si un email ya existe (Útil para el registro)
+     * 
+     * @param email
+     * @return
+     */
     boolean existsBYEmail(String email);
 }

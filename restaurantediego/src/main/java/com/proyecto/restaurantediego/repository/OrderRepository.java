@@ -14,12 +14,29 @@ import com.proyecto.restaurantediego.enums.OrderStatus;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long>{
 
-    // SOLUCIÓN AL N+1: Le decimos a Hibernate que, en esta consulta específica,
-    // cambie temporalmente de LAZY a EAGER para estos campos, logrando todo en 1 solo LEFT JOIN.
+    /**
+     * EntityGraph permite cargar relaciones específicas de forma anticipada (eager loading controlado),
+     * evitando consultas adicionales innecesarias.
+     * 
+     * LazyInitializationException Error que ocurre cuando se intenta acceder a relaciones LAZY fuera del contexto de Hibernate.
+     * 
+     * Problema N+1 Queries Evita múltiples consultas separadas por cada relación.
+     * 
+     *  La consulta obtiene una orden completa con todas sus relaciones necesarias en una sola operación.
+     * 
+     * @param id
+     * @return
+     */
     @EntityGraph(attributePaths = {"user", "table", "items", "items.product"})
     @Query("SELECT o FROM Order o WHERE o.id = :id")
     Optional<Order> findByIdWithDetais(Long id);
 
-    //Optener las ordenes activas de una mesa específica
+    /**
+     * Optener las ordenes activas de una mesa específica
+     * 
+     * @param tableId
+     * @param status
+     * @return
+     */
     List<Order> findByTableIdAndStatusNot(Long tableId, OrderStatus status);
 }
