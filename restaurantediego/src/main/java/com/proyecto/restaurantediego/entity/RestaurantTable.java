@@ -24,7 +24,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RestaurantTable extends BaseEntity {
+public class RestaurantTable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
