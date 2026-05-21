@@ -12,6 +12,15 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Se crea esta entidad abstracta para no tener que colocar en las demas entidades los mismo y replicar codigo 
+ * si no que directamentre se extiendan de esta entidad.
+ * 
+ * MappedSuperClass le dice al a jpa que no es una tabla que son atributos que se que se inyecta en la herencia
+ * 
+ * EntityListeners Autoriza la fecxha y la hora de los create y los update
+ * y en aplication se debe autorizar con el @EnableJpaAuditing
+ */
 @Setter
 @Getter
 @MappedSuperclass // indica que esto no es una tabla si no una columna que extiende 

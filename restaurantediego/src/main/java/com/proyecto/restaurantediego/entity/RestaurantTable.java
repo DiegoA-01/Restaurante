@@ -36,6 +36,13 @@ public class RestaurantTable extends BaseEntity {
     @Column(nullable = false)
     private Integer capacity;
 
+    /**
+     *  @Enumerated(EnumType.STRING) esto lo que hace es que se guardan los roles en texto y no en numeros, ya que cuando se agrege otro
+     * rol pues no se va a totiar la base de datos 
+     * 
+     * Builder.Default permite conservar este valor inicial, cuando el objeto se crea usando Lombok Builder.
+     * Sin esto, el valor sería null al usar .builder().
+     */
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     @Builder.Default

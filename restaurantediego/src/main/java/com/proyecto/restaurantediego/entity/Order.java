@@ -53,13 +53,29 @@ public class Order extends BaseEntity {
     @Builder.Default
     private OrderStatus status = OrderStatus.PENDING;
 
-    //RELACION PADRE-HIJO
+    /**
+     * Es una relacion de 1 a muchos donde una orden puede tener muchos items por ewjemplo pizza, perro,hamburguesa
+     * 
+     * mappedBy: La relación es gestionada desde el atributo "order" , en la entidad OrderItem.
+     * 
+     * CascadeType.ALL esto significa que todas las opreaciones hechas en order se aplican a su items
+     * 
+     * orphanRemoval = true:  si su item deja de pertenecer a la orden, eliminalo de la base de datos
+     * 
+     */
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<OrderItem> items = new ArrayList<>();
 
-    // Método helper (Best Practice)
-    public void addItem(OrderItem item){  //la sincronización bidireccional en Java, al agregar un hijo a la lista del padre, el hijo debe apuntar al padre.
+    /**
+     * la sincronización bidireccional en Java, al agregar un hijo a la lista del padre, el hijo debe apuntar al padre.
+     *  items.add(item);
+     * 
+     * Metodo helper
+     * 
+     * @param item
+     */
+    public void addItem(OrderItem item){  
         items.add(item);
         item.setOrder(this);
     }

@@ -52,8 +52,13 @@ public class Product extends BaseEntity {
     @Builder.Default
     private Boolean isActive = true;
 
-    // Relación ManyToOne: MUCHOS productos pertenecen a UNA categoría
-    @ManyToOne(fetch = FetchType.EAGER)
+    /**
+     * Relación ManyToOne: MUCHOS productos pertenecen a UNA categoría
+     * 
+     * FetchType.LAZY esto significa que la consulta es perezosa solo va a traer o consultar lo que la consultra diga 
+     * no va a traer todo lo que se relaciona con ella esa es la diferencia con EAGER
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id", nullable = false)
     private Category category;
 }
